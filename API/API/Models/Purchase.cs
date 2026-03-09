@@ -31,7 +31,7 @@ namespace API.Models
         /// <summary>
         /// FK do comprador para a compra
         /// </summary>
-        [ForeignKey]
+        //[ForeignKey]
         public int BuyerFK { get; set; }
         /// <summary>
         /// FK do comprador para a compra

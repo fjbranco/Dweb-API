@@ -12,7 +12,7 @@
         /// <summary>
         /// nome da categoria
         /// </summary>
-        public string Category { get; set; }
+        public string Name { get; set; }
 
         /* ********************************************
          * Relacionamentos
