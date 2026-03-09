@@ -1,4 +1,7 @@
-﻿namespace API.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models
 {
     /// <summary>
     /// Dados das fotografias
@@ -8,6 +11,7 @@
         /// <summary>
         /// chave primaria
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
         /// nome da foto
@@ -29,5 +33,20 @@
         /// preço da fotografia
         /// </summary>
         public decimal Price { get; set; }
+
+
+        /* ********************************************
+         * Relacionamentos
+         * ******************************************** */
+
+        /// <summary>
+        /// FK para Category da foto
+        /// </summary>
+        [ForeignKey(nameof(Category))]
+        public int CategoryFK { get; set; }
+        /// <summary>
+        /// FK para Category da foto
+        /// </summary>
+        public Category Category { get; set; }
     }
 }

@@ -13,5 +13,14 @@
         /// nome da categoria
         /// </summary>
         public string Category { get; set; }
+
+        /* ********************************************
+         * Relacionamentos
+         * ******************************************** */
+
+        /// <summary>
+        /// Lista de fotografias que a categoria tem
+        /// </summary>
+        public ICollection<Photography> ListOfPhotos { get; set; }
     }
 }
