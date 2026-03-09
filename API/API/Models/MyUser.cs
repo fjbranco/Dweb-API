@@ -33,5 +33,14 @@
         /// Telemóvel
         /// </summary>
         public string CellPhone { get; set; }
+
+        /* ********************************************
+         * Relacionamentos
+         * ******************************************** */
+
+        /// <summary>
+        /// Lista de compra que o utilizador faz
+        /// </summary>
+        public ICollection<Purchase>ListOfPurchases { get; set; }
     }
 }
