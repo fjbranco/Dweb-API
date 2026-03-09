@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models
 {
@@ -10,6 +11,7 @@ namespace API.Models
         /// <summary>
         /// chave primária
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
         /// data de compra
@@ -20,17 +22,7 @@ namespace API.Models
         /// </summary>
         public State State { get; set; }
 
-        /// <summary>
-        /// estados disponíveis relacionados com a compra
-        /// </summary>
-        public enum State
-        {
-            Pending,
-            Paid,
-            Sent,
-            Delivery,
-            Closed
-        }
+        
 
         /* ********************************************
          * Relacionamentos
@@ -46,9 +38,30 @@ namespace API.Models
         /// </summary>
         public MyUser Buyer { get; set; }
 
+        /* ********************************************
+         * Relacionamentos N-M
+         * ******************************************** */
+
+        /// <summary>
+        /// lista de compras de uma fotografia
+        /// </summary>
+        public ICollection<Photography> ListOfPhotos { get; set; }
+
 
     }
-    
 
-    
+    /// <summary>
+    /// estados disponíveis relacionados com a compra
+    /// </summary>
+    public enum State
+    {
+        Pending,
+        Paid,
+        Sent,
+        Delivery,
+        Closed
+    }
+
+
+
 }

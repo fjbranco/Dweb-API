@@ -48,5 +48,14 @@ namespace API.Models
         /// FK para Category da foto
         /// </summary>
         public Category Category { get; set; }
+
+        /* ********************************************
+         * Relacionamentos N-M
+         * ******************************************** */
+
+        /// <summary>
+        /// Lista de compras que o uma foto foi comprada
+        /// </summary>
+        public ICollection<Purchase> ListOfPurchase { get; set; }
     }
 }
