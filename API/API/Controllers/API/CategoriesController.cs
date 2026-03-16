@@ -43,23 +43,38 @@ namespace API.Controllers.API
                                  .Select(c => new CategoryDTO
                                  {
                                      Id = c.Id,
-                                     Name=c.Name
+                                     Name = c.Name
                                  })
-                .ToListAsync();
+                                 .OrderBy(c => c.Name)
+                                 .ToListAsync();
         }
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<CategorySimplerDTO>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-
+            //var category = await _context.Categories.FindAsync(id);
+            /*
+             * in LINQ _context.Categories.FindAsync(id) means
+             *     SELECT *
+             *     FROM Categories
+             *     WHERE Id=id
+             */
+            var category = await _context.Categories
+                                         .Where(c => c.Id == id)
+                                         .Select(c => new CategorySimplerDTO
+                                         {
+                                             Name = c.Name
+                                         })
+                                         .FirstOrDefaultAsync();
+            // protecção quando não há valor a apresentar
             if (category == null)
             {
                 return NotFound();
             }
 
             return category;
+
         }
 
         // PUT: api/Categories/5
