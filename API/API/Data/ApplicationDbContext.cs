@@ -17,7 +17,7 @@ namespace API.Data
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<Photography> Photos { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<MyUser> Users { get; set; }
+        public DbSet<MyUser> Clients { get; set; }
 
     }
 }
