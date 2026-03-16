@@ -111,10 +111,28 @@ namespace API.Controllers.API
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<CategorySimplerDTO>> PostCategory(CategorySimplerDTO nameOfCategory)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            Category category = new()
+            {
+                Name = nameOfCategory.Name
+            };
+            try
+            {
+                _context.Categories.Add(category);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                //throw;
+                /*
+                 * usar o 'throw' APENAS em desenvolvimento, e NUNCA em desenvolvimento, uma vez que
+                 * expõe muitos dados reletivamente ao programa
+                 */
+                return BadRequest();
+            }
+            
 
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
         }

@@ -1,7 +1,7 @@
 ﻿namespace API.Models.ViewModels
 {
     /// <summary>
-    /// Lista de Categories
+    /// Classe usada para apresentar um simples objecto ou adicionar um novo
     /// </summary>
     public class CategorySimplerDTO
     {
