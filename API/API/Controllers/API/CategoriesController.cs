@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using API.Models.ViewModels;
 
 namespace API.Controllers.API
 {
@@ -30,9 +31,21 @@ namespace API.Controllers.API
 
         // GET: api/Categories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            /* _context.Categories.ToListAsync() é um comando LINQ que significa
+             *     SELECT *
+             *     FROM Categories
+             */
+
+            //return await _context.Categories.ToListAsync();
+            return await _context.Categories
+                                 .Select(c => new CategoryDTO
+                                 {
+                                     Id = c.Id,
+                                     Name=c.Name
+                                 })
+                .ToListAsync();
         }
 
         // GET: api/Categories/5
