@@ -1,6 +1,7 @@
 using API.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +15,38 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+
+// adicionar a tool Swagger para documentar a API
+// Adiciona o Swagger
+// <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" /> // para .NET Framework 8
+//<PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.5" />   // para .NET Framework 10
+
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Minha API de gestão de Fotos",
+        Version = "v1",
+        Description = "API para gestão de categorias, fotografias e utilizadores"
+    });
+
+    /*  // Caminho para o XML gerado
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory,xmlFile);
+        c.IncludeXmlComments(xmlPath);
+    */
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
+    // start the middleware swagger
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
