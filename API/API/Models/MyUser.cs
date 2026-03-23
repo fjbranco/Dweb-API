@@ -12,27 +12,27 @@
         /// <summary>
         /// nome do utilizador
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         /// <summary>
         /// morada do utilizador
         /// </summary>
-        public string Address { get; set; }
+        public string? Address { get; set; }
         /// <summary>
         /// código postal
         /// </summary>
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
         /// <summary>
         /// país
         /// </summary>
-        public string Country { get; set; }
+        public string? Country { get; set; }
         /// <summary>
         /// Numero de identificação fiscal
         /// </summary>
-        public string TaxNumber { get; set; }
+        public string TaxNumber { get; set; } = "";
         /// <summary>
         /// Telemóvel
         /// </summary>
-        public string CellPhone { get; set; }
+        public string? CellPhone { get; set; }
 
         /* ********************************************
          * Relacionamentos
@@ -41,6 +41,6 @@
         /// <summary>
         /// Lista de compra que o utilizador faz
         /// </summary>
-        public ICollection<Purchase>ListOfPurchases { get; set; }
+        public ICollection<Purchase> ListOfPurchases { get; set; } = [];
     }
 }
