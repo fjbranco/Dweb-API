@@ -32,6 +32,7 @@ namespace API.Controllers.API
                                  {
                                      Id = c.Id,
                                      Title = c.Title,
+                                     Description = c.Description,   
                                      File = c.File
 
                                  })
