@@ -33,6 +33,7 @@ namespace API.Controllers.API
 
         // GET: api/Categories
         [HttpGet]
+        [AllowAnonymous] //permite acesso a este endpoint mesmo sem autenticação
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetCategories()
         {
             /* _context.Categories.ToListAsync() é um comando LINQ que significa
@@ -53,6 +54,7 @@ namespace API.Controllers.API
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
+        [AllowAnonymous] //permite acesso a este endpoint mesmo sem autenticação
         public async Task<ActionResult<CategorySimplerDTO>> GetCategory(int id)
         {
             //var category = await _context.Categories.FindAsync(id);

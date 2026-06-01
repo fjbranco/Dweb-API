@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using API.Data;
+using API.Models;
+using API.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
-using API.Models;
-using API.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer")] //utilizado para autorização JWT
     public class PhotosController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -24,6 +26,7 @@ namespace API.Controllers.API
 
         // GET: api/Photos
         [HttpGet]
+        [AllowAnonymous] //permite acesso sem autenticação
         public async Task<ActionResult<IEnumerable<PhotoDTO>>> GetPhotos()
         {
             //return await _context.Photos.ToListAsync();
@@ -42,6 +45,7 @@ namespace API.Controllers.API
 
         // GET: api/Photos/5
         [HttpGet("{id}")]
+        [AllowAnonymous] //permite acesso sem autenticação
         public async Task<ActionResult<PhotoSimplerDTO>> GetPhotography(int id)
         {
             //var photography = await _context.Photos.FindAsync(id);
