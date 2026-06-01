@@ -23,8 +23,8 @@ public class PurchasesController : ControllerBase
 
         // Obter as compras do utilizador autenticado
         var purchases = await _context.Purchases
-            .Include(p => p.Buyer)
             .Where(p => p.Buyer.UserName == correntUser)
+            .Include(p => p.Buyer)
             .Include(p => p.ListOfPhotos)
             .ToListAsync();
         return purchases;
