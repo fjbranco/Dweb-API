@@ -1,4 +1,6 @@
-﻿namespace API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API.Models
 {
     /// <summary>
     /// dados do utilizador no site
@@ -41,6 +43,12 @@
         /// <summary>
         /// Lista de compra que o utilizador faz
         /// </summary>
-        public ICollection<Purchase>ListOfPurchases { get; set; }
+        public ICollection<Purchase>ListOfPurchases { get; set; } = [];
+
+        /// <summary>
+        /// atributo para ligar MyUser com IdentityUser
+        /// </summary>
+        [StringLength(50)]
+        public string UserName { get; set; } = "";
     }
 }

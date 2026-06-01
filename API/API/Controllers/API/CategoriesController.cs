@@ -14,7 +14,7 @@ namespace API.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(AuthenticationSchemes ="Bearer")] //utilizado para autorização JWT
     public class CategoriesController : ControllerBase
     {
         /// <summary>
